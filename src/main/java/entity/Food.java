@@ -1,13 +1,20 @@
 package entity;
 
-public class Food extends Item{
-    protected String ingredient;
+public class Food extends Item {
+    private FoodType type;
 
-    public String getIngredient() {
-        return ingredient;
+    enum FoodType {
+        BREAKFAST,
+        LUNCH,
+        DINNER,
+        FASTFOOD
     }
 
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
+    public FoodType getType() {
+        return type;
+    }
+
+    public void setType(FoodType type) {
+        this.type = type;
     }
 }

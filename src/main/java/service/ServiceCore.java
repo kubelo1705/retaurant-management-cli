@@ -1,13 +1,17 @@
 package service;
 
-import entity.Bill;
+import exception.RestaurantException;
 
 import java.util.List;
 
 public interface ServiceCore<T> {
-    void add(T object);
-    void update(T object);
-    void delete(T object);
-    T findById(int id);
-    List<T> findAllBill();
+    void add(T object) throws RestaurantException;
+
+    void update(T object) throws RestaurantException;
+
+    void delete(T object) throws RestaurantException;
+
+    T findById(int id) throws RestaurantException;
+
+    List<T> findAll() throws RestaurantException;
 }

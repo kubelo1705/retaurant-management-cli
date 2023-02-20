@@ -8,10 +8,11 @@ public class RestaurantException extends Exception {
         BILL_NOT_FOUND,
         INVALID_INPUT_PARAM,
         FOOD_NOT_FOUND,
-        DRINK_NOT_FOUND
+        DRINK_NOT_FOUND,
+        ERROR_READING_FILE
     }
 
-    public RestaurantException(String message, Reason reason) {
+    public RestaurantException(Reason reason, String message) {
         this.message = message;
         this.reason = reason;
     }
