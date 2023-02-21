@@ -1,7 +1,6 @@
 package entity;
 
 public class Drink extends Item{
-    private boolean isAlcohol;
     private DrinkType type;
 
     enum DrinkType{
@@ -9,11 +8,11 @@ public class Drink extends Item{
         WINE
     }
 
-    public boolean isAlcohol() {
-        return isAlcohol;
+    public DrinkType getType() {
+        return type;
     }
 
-    public void setAlcohol(boolean alcohol) {
-        isAlcohol = alcohol;
+    public void setType(DrinkType type) {
+        this.type = type;
     }
 }

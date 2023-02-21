@@ -17,8 +17,8 @@ public class JsonHandler<T> implements FileHandler<T>{
     private static final String FIFE_EXTENSION = ".json";
     private String name;
 
-    public JsonHandler(String name) {
-        this.name = name;
+    public JsonHandler(Class clazz) {
+        this.name = clazz.getSimpleName();
     }
 
     @Override

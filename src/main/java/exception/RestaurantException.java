@@ -7,9 +7,10 @@ public class RestaurantException extends Exception {
     public enum Reason {
         BILL_NOT_FOUND,
         INVALID_INPUT_PARAM,
-        FOOD_NOT_FOUND,
+        ITEM_NOT_FOUND,
         DRINK_NOT_FOUND,
-        ERROR_READING_FILE
+        ERROR_READING_FILE,
+        ERROR_WRITING_FILE
     }
 
     public RestaurantException(Reason reason, String message) {
