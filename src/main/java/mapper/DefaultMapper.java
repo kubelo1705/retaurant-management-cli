@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ItemMapper<T extends Item> implements BaseMapper<T> {
+public class DefaultMapper<T> implements BaseMapper<T> {
     private ObjectMapper mapper;
     private Class clazz;
 
-    public ItemMapper(Class clazz) {
+    public DefaultMapper(Class clazz) {
         this.mapper = new ObjectMapper();
         this.clazz = clazz;
     }

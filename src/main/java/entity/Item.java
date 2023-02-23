@@ -5,7 +5,6 @@ public class Item {
     protected String name;
     protected String description;
     protected int price;
-//    protected boolean isAvailable;
 
     public int getId() {
         return id;

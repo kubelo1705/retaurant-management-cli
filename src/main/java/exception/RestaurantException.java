@@ -6,6 +6,7 @@ public class RestaurantException extends Exception {
 
     public enum Reason {
         BILL_NOT_FOUND,
+        BILL_EMPTY,
         INVALID_INPUT_PARAM,
         ITEM_NOT_FOUND,
         DRINK_NOT_FOUND,

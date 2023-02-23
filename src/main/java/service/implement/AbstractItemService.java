@@ -1,25 +1,24 @@
-package service;
+package service.implement;
 
 import entity.Item;
 import exception.RestaurantException;
 import filehandler.FileHandler;
-import mapper.ItemMapper;
+import mapper.DefaultMapper;
+import service.ItemServiceCore;
+import utils.WriteFileWorker;
 
 import java.io.IOException;
 import java.util.*;
 
-public abstract class ItemService<T extends Item> implements ServiceCore<T> {
+public abstract class AbstractItemService<T extends Item> implements ItemServiceCore<T> {
     protected List<T> cache;
     protected FileHandler fileHandler;
-    protected ItemMapper<T> mapper;
+    protected DefaultMapper<T> mapper;
     protected boolean isChanged;
     protected Timer timer;
-    protected WriteFileWorker worker;
 
-    public ItemService(){
-        timer=new Timer();
-        worker=new WriteFileWorker();
-        timer.scheduleAtFixedRate(worker,0,3000*1000);
+    public AbstractItemService(){
+        new WriteFileWorker<T>(this,fileHandler,300);
     }
 
     @Override
@@ -76,6 +75,16 @@ public abstract class ItemService<T extends Item> implements ServiceCore<T> {
         return cache;
     }
 
+    @Override
+    public boolean isChange() {
+        return isChanged;
+    }
+
+    @Override
+    public void resetChangeStatus() {
+        isChanged=false;
+    }
+
     private void removeAndSave(T item) throws RestaurantException {
         try {
             cache.remove(item);
@@ -83,25 +92,6 @@ public abstract class ItemService<T extends Item> implements ServiceCore<T> {
         } catch (IOException ioException) {
             throw new RestaurantException(RestaurantException.Reason.ERROR_WRITING_FILE, ioException.getMessage());
         }
-    }
-
-    private class WriteFileWorker extends TimerTask {
-
-        public WriteFileWorker(){
-        }
-
-        @Override
-        public void run() {
-            try {
-                if(isChanged) {
-                    fileHandler.write(cache);
-                }
-                isChanged=false;
-            } catch (IOException e) {
-                // ignore, will write file at the next time
-            }
-        }
-
     }
 
 }
