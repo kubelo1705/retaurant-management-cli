@@ -1,18 +1,17 @@
 package service;
 
-import entity.Food;
-import exception.RestaurantException;
+import exception.ApplicationException;
 
 import java.util.List;
 
 public interface ServiceCore<T> {
-    void add(T object) throws RestaurantException;
+    void add(T object) throws ApplicationException;
 
-    void update(T object) throws RestaurantException;
+    void update(T object) throws ApplicationException;
 
-    T findById(int id) throws RestaurantException;
+    T findById(int id) throws ApplicationException;
 
-    List<T> findAll() throws RestaurantException;
+    List<T> findAll() throws ApplicationException;
 
     boolean isChange();
 

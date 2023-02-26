@@ -1,6 +1,6 @@
 package entity;
 
-public class Item {
+public abstract class Item {
     protected int id;
     protected String name;
     protected String description;

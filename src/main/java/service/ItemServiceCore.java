@@ -1,11 +1,11 @@
 package service;
 
-import exception.RestaurantException;
+import exception.ApplicationException;
 
 public interface ItemServiceCore<T> extends ServiceCore<T> {
-    void deleteById(int id) throws RestaurantException;
+    void deleteById(int id) throws ApplicationException;
 
-    void deleteByName(String name) throws RestaurantException;
+    void deleteByName(String name) throws ApplicationException;
 
-    T findByName(String name) throws RestaurantException;
+    T findByName(String name) throws ApplicationException;
 }
