@@ -19,6 +19,7 @@ public class CommandConstants {
     public static final String PARAM_PREFIX = "--";
     public static final String ID_PREFIX = PARAM_PREFIX + "id";
     public static final String NAME_PREFIX = PARAM_PREFIX + "name";
+    public static final String PRICE_PREFIX = PARAM_PREFIX + "name";
     public static final List<String> VALID_PARAM_PREFIX = new LinkedList<>();
 
     static {

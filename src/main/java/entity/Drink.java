@@ -1,11 +1,11 @@
 package entity;
 
-public class Drink extends Item{
+public class Drink extends Item {
     private DrinkType type;
 
-    enum DrinkType{
-        SOFTDRINK,
-        WINE
+    public Drink(int id, String name, String description, int price, DrinkType type) {
+        super(id, name, description, price);
+        this.type = type;
     }
 
     public DrinkType getType() {
@@ -14,5 +14,10 @@ public class Drink extends Item{
 
     public void setType(DrinkType type) {
         this.type = type;
+    }
+
+    public enum DrinkType {
+        SOFTDRINK,
+        WINE
     }
 }

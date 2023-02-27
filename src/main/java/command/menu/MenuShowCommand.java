@@ -21,24 +21,20 @@ public class MenuShowCommand extends ConcreteCompositeCommand {
     public void process() {
         try {
             validateCommand(getCommand(), false);
-            String[] partsOfCommand = getCommand().trim().split(getName(), 2);
-            String option = partsOfCommand[1].trim();
+            String option = getOptionCommand();
 
-            // this command is not required parameters
-            if (getMapParams(option).isEmpty()) {
-                switch (option) {
-                    case CommandConstants.ALL:
-                        showAll();
-                        break;
-                    case CommandConstants.FOOD:
-                        showFood();
-                        break;
-                    case CommandConstants.DRINK:
-                        showDrink();
-                        break;
-                    default:
-                        throw new ApplicationException(ApplicationException.Reason.INVALID_OPTIONS, option);
-                }
+            switch (option) {
+                case CommandConstants.ALL:
+                    showAll();
+                    break;
+                case CommandConstants.FOOD:
+                    showFood();
+                    break;
+                case CommandConstants.DRINK:
+                    showDrink();
+                    break;
+                default:
+                    throw new ApplicationException(ApplicationException.Reason.INVALID_OPTIONS, option);
             }
         } catch (ApplicationException exception) {
             System.out.println(exception.toString());
