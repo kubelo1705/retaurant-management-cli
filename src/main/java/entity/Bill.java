@@ -1,18 +1,21 @@
 package entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Bill {
     private int id;
     private int total;
-    private Date date;
-    private List<Item> items;
-    private BillStatus billStatus;
+    private String date;
+    private List<SelectedItem> items;
+    private BillStatus status;
 
-    enum BillStatus{
-        PAID,
-        UN_PAID
+    public Bill() {
+        this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+        this.items = new LinkedList<>();
+        this.status = BillStatus.UNPAID;
     }
 
     public int getId() {
@@ -23,6 +26,14 @@ public class Bill {
         this.id = id;
     }
 
+    public BillStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(BillStatus status) {
+        this.status = status;
+    }
+
     public int getTotal() {
         return total;
     }
@@ -31,19 +42,24 @@ public class Bill {
         this.total = total;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public List<Item> getItems() {
+    public List<SelectedItem> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(List<SelectedItem> items) {
         this.items = items;
+    }
+
+    public enum BillStatus {
+        PAID,
+        UNPAID
     }
 }

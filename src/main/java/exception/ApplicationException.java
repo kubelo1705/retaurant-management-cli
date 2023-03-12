@@ -2,8 +2,8 @@ package exception;
 
 public class ApplicationException extends Exception {
     private static final String REPLACED_STRING = "\\{value\\}";
+    private final Reason reason;
     private String message = "";
-    private Reason reason;
 
     public ApplicationException(Reason reason, String message) {
         this.message = message;
@@ -22,6 +22,7 @@ public class ApplicationException extends Exception {
     public enum Reason {
         BILL_NOT_FOUND("Can not find bill with id={value}"),
         BILL_EMPTY("Bill \"{value}\" is empty"),
+        BILL_PAID("Bill paid"),
 
         COMMAND_NOT_FOUND("Can not find command \"{value}\""),
         INVALID_PARAMS("Invalid command parameter(s) \"{value}\""),
@@ -41,7 +42,7 @@ public class ApplicationException extends Exception {
         ERROR_READING_FILE("Error occurs while reading data file because \"{value}\""),
         ERROR_WRITING_FILE("Error occurs while writing file because \"{value}\"");
 
-        private String message;
+        private final String message;
 
         Reason(String message) {
             this.message = message;

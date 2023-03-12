@@ -8,16 +8,17 @@ import java.util.LinkedList;
 
 public class FoodService extends AbstractItemService<Food> {
     private static FoodService instance;
+
     public FoodService() {
         super();
-        fileHandler=new JsonHandler(Food.class);
-        mapper= new DefaultMapper<>(Food.class);
-        cache=new LinkedList<>();
+        fileHandler = new JsonHandler(Food.class);
+        mapper = new DefaultMapper<>(Food.class);
+        cache = new LinkedList<>();
     }
 
     public static AbstractItemService<Food> getInstance() {
-        if(instance==null)
-            instance=new FoodService();
+        if (instance == null)
+            instance = new FoodService();
         return instance;
     }
 }

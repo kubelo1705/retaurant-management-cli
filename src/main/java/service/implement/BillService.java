@@ -16,9 +16,9 @@ import java.util.Optional;
 
 public class BillService implements BillServiceCore<Bill> {
     private static BillService instance;
+    private final FileHandler fileHandler;
+    private final DefaultMapper<Bill> mapper;
     private List<Bill> cache;
-    private FileHandler fileHandler;
-    private DefaultMapper<Bill> mapper;
     private boolean isChanged;
 
     public BillService() {
@@ -42,7 +42,7 @@ public class BillService implements BillServiceCore<Bill> {
 
     @Override
     public void update(Bill object) {
-
+        isChanged = true;
     }
 
     @Override

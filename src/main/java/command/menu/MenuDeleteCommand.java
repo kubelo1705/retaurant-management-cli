@@ -15,7 +15,7 @@ public class MenuDeleteCommand extends ModifyMenuCommand {
     @Override
     public void process() {
         try {
-            Map<String, String> params = preProcess();
+            Map<String, String> params = getCommandParams();
             AbstractItemService itemService = getItemService(getOptionCommand());
 
             String id = params.get(CommandConstants.ID_PREFIX);
@@ -24,9 +24,8 @@ public class MenuDeleteCommand extends ModifyMenuCommand {
 
             itemService.deleteById(Integer.parseInt(id));
 
-        } catch (ApplicationException e) {
-            System.out.println(e.toString());
+        } catch (ApplicationException exception) {
+            System.out.println(exception.toString());
         }
-
     }
 }

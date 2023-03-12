@@ -1,4 +1,4 @@
 package service;
 
-public interface BillServiceCore<T> extends ServiceCore<T>{
+public interface BillServiceCore<T> extends ServiceCore<T> {
 }

@@ -1,6 +1,8 @@
+import entity.Bill;
 import exception.ApplicationException;
 import factory.CommandFactory;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class RestaurantManagement {

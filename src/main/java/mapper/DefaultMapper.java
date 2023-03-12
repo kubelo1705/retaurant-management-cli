@@ -1,15 +1,14 @@
 package mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entity.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class DefaultMapper<T> implements BaseMapper<T> {
-    private ObjectMapper mapper;
-    private Class clazz;
+    private final ObjectMapper mapper;
+    private final Class clazz;
 
     public DefaultMapper(Class clazz) {
         this.mapper = new ObjectMapper();

@@ -13,19 +13,24 @@ import java.util.Map;
 public class MenuAddCommand extends ModifyMenuCommand {
     public MenuAddCommand() {
         setName(CommandConstants.ADD);
+        getRequiredParam().add(CommandConstants.ID_PREFIX);
+        getRequiredParam().add(CommandConstants.NAME_PREFIX);
+        getRequiredParam().add(CommandConstants.DESCRIPTION_PREFIX);
+        getRequiredParam().add(CommandConstants.PRICE_PREFIX);
+        getRequiredParam().add(CommandConstants.TYPE_PREFIX);
     }
 
     @Override
     public void process() {
         try {
-            Map<String, String> params = preProcess();
+            Map<String, String> params = getCommandParams();
             AbstractItemService itemService = getItemService(getOptionCommand());
 
             String id = params.get(CommandConstants.ID_PREFIX);
-            String name = params.get(CommandConstants.ID_PREFIX);
-            String description = params.get(CommandConstants.ID_PREFIX);
-            String price = params.get(CommandConstants.ID_PREFIX);
-            String type = params.get(CommandConstants.ID_PREFIX);
+            String name = params.get(CommandConstants.NAME_PREFIX);
+            String description = params.get(CommandConstants.DESCRIPTION_PREFIX);
+            String price = params.get(CommandConstants.PRICE_PREFIX);
+            String type = params.get(CommandConstants.TYPE_PREFIX);
 
             if (id == null || name == null || description == null || price == null || type == null)
                 throw new ApplicationException(ApplicationException.Reason.NOT_ENOUGH_PARAM);

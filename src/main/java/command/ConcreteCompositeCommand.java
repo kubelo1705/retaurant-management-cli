@@ -14,15 +14,15 @@ import service.implement.FoodService;
 import java.util.*;
 
 public abstract class ConcreteCompositeCommand implements CompositeCommand {
-    private static final String SPACE = "\\s";
-    private static final String MULTI_SPACES = "\\s+";
+    protected static final String SPACE = "\\s";
+    protected static final String MULTI_SPACES = "\\s+";
 
-    private ItemServiceCore<Food> foodService = FoodService.getInstance();
-    private ItemServiceCore<Drink> drinkService = DrinkService.getInstance();
-    private BillServiceCore<Bill> billService = BillService.getInstance();
+    private final ItemServiceCore<Food> foodService = FoodService.getInstance();
+    private final ItemServiceCore<Drink> drinkService = DrinkService.getInstance();
+    private final BillServiceCore<Bill> billService = BillService.getInstance();
 
-    private List<CompositeCommand> subCommands = new LinkedList<>();
-    private List<String> requiredParam = new LinkedList<>();
+    private final List<CompositeCommand> subCommands = new LinkedList<>();
+    private final List<String> requiredParam = new LinkedList<>();
     private String name = "";
     private String command;
 
@@ -93,7 +93,7 @@ public abstract class ConcreteCompositeCommand implements CompositeCommand {
         return billService;
     }
 
-    protected Map<String, String> getMapParams(String optionAndParamsString) throws ApplicationException {
+    protected Map<String, String> getCommandParams(String optionAndParamsString) throws ApplicationException {
         Map<String, String> result = new HashMap<>();
 
         String[] optionAndParams = optionAndParamsString.split(SPACE, 2);
@@ -122,10 +122,10 @@ public abstract class ConcreteCompositeCommand implements CompositeCommand {
         map.put(key, value);
     }
 
-    private void validateParam(Map<String, String> map, String key, String value) throws ApplicationException {
-        if (!CommandConstants.VALID_PARAM_PREFIX.contains(key))
+    private void validateParam(Map<String, String> commandParams, String key, String value) throws ApplicationException {
+        if (!requiredParam.contains(key))
             throw new ApplicationException(ApplicationException.Reason.INVALID_PARAMS, key);
-        if (map.containsKey(key))
+        if (commandParams.containsKey(key))
             throw new ApplicationException(ApplicationException.Reason.DUPLICATE_PARAM, key);
         if (CommandConstants.ID_PREFIX.equals(key) || CommandConstants.PRICE_PREFIX.equals(key)) {
             try {
@@ -148,6 +148,12 @@ public abstract class ConcreteCompositeCommand implements CompositeCommand {
 
         if (option == null)
             throw new ApplicationException(ApplicationException.Reason.INVALID_OPTIONS, null);
-        return option;
+        return option.trim();
+    }
+
+    protected Map<String, String> getCommandParams() throws ApplicationException {
+        validateCommand(getCommand(), true);
+        String option = getOptionCommand();
+        return getCommandParams(option);
     }
 }

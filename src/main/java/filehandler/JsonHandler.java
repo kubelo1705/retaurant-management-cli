@@ -12,10 +12,10 @@ import java.util.List;
 /**
  * Generic class to read and write bills,food,drink to file
  */
-public class JsonHandler<T> implements FileHandler<T>{
+public class JsonHandler<T> implements FileHandler<T> {
     private static final String FILE_PATH = "./src/main/resources/data/";
     private static final String FIFE_EXTENSION = ".json";
-    private String name;
+    private final String name;
 
     public JsonHandler(Class clazz) {
         this.name = clazz.getSimpleName();

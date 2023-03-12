@@ -6,6 +6,9 @@ public abstract class Item {
     protected String description;
     protected int price;
 
+    public Item() {
+    }
+
     public Item(int id, String name, String description, int price) {
         this.id = id;
         this.name = name;

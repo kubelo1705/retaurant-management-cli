@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class CommandFactory {
-    private List<CompositeCommand> listCommand = new ArrayList<>();
+    private final List<CompositeCommand> listCommand = new ArrayList<>();
 
     public CommandFactory() {
         listCommand.add(new BillCommand());

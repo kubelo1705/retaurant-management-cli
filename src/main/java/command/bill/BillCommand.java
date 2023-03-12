@@ -6,8 +6,8 @@ import constants.CommandConstants;
 public class BillCommand extends ConcreteCompositeCommand {
 
     public BillCommand() {
-        addSubCommand(new BillAddCommand());
-        addSubCommand(new BillEditCommand());
+        addSubCommand(new BillCreateCommand());
+        addSubCommand(new BillPayCommand());
         addSubCommand(new BillShowCommand());
         setName(CommandConstants.BILL);
     }
