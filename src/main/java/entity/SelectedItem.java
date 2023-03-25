@@ -4,7 +4,10 @@ public class SelectedItem extends Item {
     private int quantity;
     private int amount;
 
-    public SelectedItem() {
+    public SelectedItem(Item item, int quantity) {
+        super(item.getId(), item.getName(), item.getDescription(), item.getPrice());
+        this.quantity = quantity;
+        this.amount = quantity * item.getPrice();
     }
 
     public SelectedItem(int id, String name, String description, int price, int quantity, int amount) {

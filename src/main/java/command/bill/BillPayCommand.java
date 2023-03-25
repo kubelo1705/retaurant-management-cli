@@ -12,15 +12,10 @@ public class BillPayCommand extends ConcreteCompositeCommand {
     }
 
     @Override
-    public void validateCommand(String command, boolean isNeedParam) throws ApplicationException {
-        super.validateCommand(command, isNeedParam);
-    }
-
-    @Override
     public void process() {
         try {
             validateCommand(getCommand(), true);
-            int id = Integer.valueOf(getCommandParams().get(CommandConstants.ID_PREFIX));
+            int id = Integer.parseInt(getCommandParams().get(CommandConstants.ID_PREFIX));
             Bill bill = getBillService().findById(id);
             if (bill.getStatus() == Bill.BillStatus.PAID) {
                 throw new ApplicationException(ApplicationException.Reason.BILL_PAID);

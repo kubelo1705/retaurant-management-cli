@@ -20,7 +20,7 @@ public class ApplicationException extends Exception {
     }
 
     public enum Reason {
-        BILL_NOT_FOUND("Can not find bill with id={value}"),
+        BILL_NOT_FOUND("Can not find bill with id=\"{value}\""),
         BILL_EMPTY("Bill \"{value}\" is empty"),
         BILL_PAID("Bill paid"),
 
@@ -29,7 +29,7 @@ public class ApplicationException extends Exception {
         REQUIRED_PARAMS("Required command parameter(s)"),
         DUPLICATE_PARAM("Duplicate command parameter(s) \"{value}\""),
         REDUNDANT_PARAM("Redundant command parameter \"{value}\""),
-        NOT_ENOUGH_PARAM("Not enough command parameter \"{value}\""),
+        NOT_ENOUGH_PARAM("Not enough command parameter(s)"),
         INVALID_PARAMS_VALUE("Invalid value of parameter \"{value}\""),
         INVALID_OPTIONS("Invalid command option(s) \"{value}\""),
 

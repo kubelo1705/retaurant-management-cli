@@ -16,6 +16,7 @@ import java.util.*;
 public abstract class ConcreteCompositeCommand implements CompositeCommand {
     protected static final String SPACE = "\\s";
     protected static final String MULTI_SPACES = "\\s+";
+    protected static final String EQUAL = "=";
 
     private final ItemServiceCore<Food> foodService = FoodService.getInstance();
     private final ItemServiceCore<Drink> drinkService = DrinkService.getInstance();
@@ -101,7 +102,7 @@ public abstract class ConcreteCompositeCommand implements CompositeCommand {
             String paramString = optionAndParams[1];
             String[] params = paramString.split(SPACE);
             for (String param : params) {
-                String[] keyAndValue = param.split("=");
+                String[] keyAndValue = param.split(EQUAL);
                 if (keyAndValue.length == 2) {
                     String key = keyAndValue[0];
                     String value = keyAndValue[1];

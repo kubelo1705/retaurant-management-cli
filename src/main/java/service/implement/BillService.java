@@ -2,6 +2,7 @@ package service.implement;
 
 import entity.Bill;
 import entity.Item;
+import entity.SelectedItem;
 import exception.ApplicationException;
 import filehandler.FileHandler;
 import filehandler.JsonHandler;
@@ -38,6 +39,7 @@ public class BillService implements BillServiceCore<Bill> {
     public void add(Bill object) throws ApplicationException {
         if (object.getTotal() == 0)
             calculateTotal(object);
+        cache.add(object);
     }
 
     @Override
@@ -48,7 +50,7 @@ public class BillService implements BillServiceCore<Bill> {
     @Override
     public Bill findById(int id) throws ApplicationException {
         Optional<Bill> result = findAll().stream().filter(item -> item.getId() == id).findFirst();
-        if (!result.isPresent())
+        if (result.isEmpty())
             throw new ApplicationException(ApplicationException.Reason.BILL_NOT_FOUND, "" + id);
         return result.get();
     }
@@ -82,4 +84,16 @@ public class BillService implements BillServiceCore<Bill> {
             throw new ApplicationException(ApplicationException.Reason.BILL_EMPTY, object.getId() + "");
         object.setTotal(total);
     }
+
+    @Override
+    public Bill createBill() throws ApplicationException {
+        return new Bill();
+    }
+
+    @Override
+    public void addItemToBill(Bill bill, Item item, int quantity) {
+        bill.getItems().add(new SelectedItem(item, quantity));
+    }
+
+
 }
